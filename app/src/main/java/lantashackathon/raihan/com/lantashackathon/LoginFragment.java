@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -87,6 +89,7 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.login, container, false);
+
         username = (EditText)root.findViewById(R.id.username);
         email = (EditText)root.findViewById(R.id.email);
         password = (EditText)root.findViewById(R.id.password);
@@ -160,6 +163,7 @@ public class LoginFragment extends Fragment {
            user =  username.getText().toString();
            Email =         email.getText().toString();
            pass =         password.getText().toString();
+//            Toast.makeText(getActivity(), "hey there", Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -170,11 +174,12 @@ public class LoginFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Object o) {
+
+            MainActivity.replacefragment();
+
+//            getActivity().replacefragment();
+//            getFragmentManager().executePendingTransactions();
             super.onPostExecute(o);
-            final FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.fragment, new MainActivityFragment());
-            ft.commit();
-            getFragmentManager().executePendingTransactions();
         }
     }
 }
